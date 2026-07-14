@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "triagekit"
+abstract: "AI-powered issue triage for GitHub — dedupe, label, and demand reproductions, as an Action or CLI."
+authors:
+  - alias: kero168
+repository-code: "https://github.com/kero168/triagekit"
+url: "https://github.com/kero168/triagekit"
+license: MIT
+version: 0.1.0
+date-released: "2026-07-14"
+keywords:
+  - github-actions
+  - issue-triage
+  - duplicate-detection
+  - open-source-maintenance
+  - cli

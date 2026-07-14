@@ -1,0 +1,70 @@
+name: 'triagekit — AI issue triage'
+description: >-
+  AI-powered issue triage: flag possible duplicates, suggest a label, and
+  request missing reproduction info on newly opened issues. Works with no API
+  key (local heuristics); LLM refinement is opt-in.
+author: 'kero168'
+branding:
+  icon: 'filter'
+  color: 'purple'
+
+inputs:
+  github-token:
+    description: >-
+      Token used to read open issues (duplicate detection) and post the triage
+      comment. Needs `issues: write`.
+    required: false
+    default: ${{ github.token }}
+  dry-run:
+    description: >-
+      If "true", print the triage report and the would-be comment to the job
+      log instead of commenting on the issue.
+    required: false
+    default: 'false'
+  llm:
+    description: >-
+      If "true", refine the label suggestion with an LLM. Requires
+      ANTHROPIC_API_KEY or OPENAI_API_KEY in the step `env`. Everything else
+      keeps working without it.
+    required: false
+    default: 'false'
+  threshold:
+    description: 'Similarity threshold (0..1) above which an existing issue is reported as a possible duplicate.'
+    required: false
+    default: '0.45'
+  max-duplicates:
+    description: 'Maximum number of duplicate candidates to report.'
+    required: false
+    default: '3'
+  version:
+    description: 'Version of the triagekit CLI to run (an npm dist-tag or exact version, e.g. "0.1.0").'
+    required: false
+    default: 'latest'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    - name: Run triagekit
+      shell: bash
+      env:
+        GITHUB_TOKEN: ${{ inputs.github-token }}
+        TRIAGEKIT_DRY_RUN: ${{ inputs.dry-run }}
+        TRIAGEKIT_LLM: ${{ inputs.llm }}
+        TRIAGEKIT_THRESHOLD: ${{ inputs.threshold }}
+        TRIAGEKIT_MAX_DUPLICATES: ${{ inputs.max-duplicates }}
+        TRIAGEKIT_VERSION: ${{ inputs.version }}
+      run: |
+        args=(analyze --event "$GITHUB_EVENT_PATH" --repo "$GITHUB_REPOSITORY" --comment)
+        args+=(--threshold "$TRIAGEKIT_THRESHOLD" --max-duplicates "$TRIAGEKIT_MAX_DUPLICATES")
+        if [ "$TRIAGEKIT_DRY_RUN" = "true" ]; then
+          args+=(--dry-run)
+        fi
+        if [ "$TRIAGEKIT_LLM" = "true" ]; then
+          args+=(--llm)
+        fi
+        npx --yes "triagekit@$TRIAGEKIT_VERSION" "${args[@]}"

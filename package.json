@@ -1,0 +1,63 @@
+{
+  "name": "triagekit",
+  "version": "0.1.0",
+  "description": "AI-powered issue triage for GitHub — dedupe, label, and demand reproductions, as an Action or CLI.",
+  "keywords": [
+    "github",
+    "issues",
+    "triage",
+    "github-actions",
+    "cli",
+    "maintainer-tools",
+    "duplicate-detection",
+    "labeling",
+    "llm"
+  ],
+  "homepage": "https://github.com/kero168/triagekit#readme",
+  "bugs": {
+    "url": "https://github.com/kero168/triagekit/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kero168/triagekit.git"
+  },
+  "license": "MIT",
+  "author": "kero168",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "triagekit": "dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "action.yml"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "lint": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "commander": "^12.1.0",
+    "picocolors": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.0",
+    "tsup": "^8.3.0",
+    "typescript": "^5.6.0",
+    "vitest": "^2.1.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
