@@ -1,0 +1,7 @@
+{
+  "number": 105,
+  "title": "Typo in README quick start section",
+  "body": "The README example uses `triagekit analyse` but the actual command is `triagekit analyze`. The docs quick start should be updated to match.",
+  "labels": [],
+  "user": { "login": "careful-reader" }
+}

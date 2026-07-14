@@ -1,0 +1,7 @@
+{
+  "number": 103,
+  "title": "Feature request: add GitLab support",
+  "body": "It would be great if triagekit could also analyze GitLab issues and post notes on merge requests. I'd propose a `--provider gitlab` flag that reads `GITLAB_TOKEN`. Happy to help with a PR if there is interest.",
+  "labels": [],
+  "user": { "login": "gitlab-fan" }
+}

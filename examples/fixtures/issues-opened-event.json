@@ -1,0 +1,15 @@
+{
+  "action": "opened",
+  "issue": {
+    "number": 7,
+    "title": "Crash when running analyze twice in a row",
+    "body": "The second run always fails with an exception. No idea why.",
+    "labels": [],
+    "user": { "login": "demo-user" }
+  },
+  "repository": {
+    "full_name": "kero168/triagekit-demo",
+    "private": false
+  },
+  "sender": { "login": "demo-user" }
+}

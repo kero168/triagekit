@@ -1,0 +1,7 @@
+{
+  "number": 104,
+  "title": "How do I run triagekit only for issues without a triaged label?",
+  "body": "Is it possible to skip analysis for issues that already have the `triaged` label? I could not find an option for this in the docs. Am I missing something?",
+  "labels": [],
+  "user": { "login": "curious-user" }
+}

@@ -1,0 +1,7 @@
+{
+  "number": 101,
+  "title": "CLI crashes with TypeError when config file is empty",
+  "body": "### Description\nRunning `triagekit analyze issue.json` crashes when `triagekit.config.json` exists but is empty.\n\n### Steps to reproduce\n1. Create an empty `triagekit.config.json`\n2. Run `npx triagekit analyze examples/fixtures/bug-report-complete.json`\n\n```\nTypeError: Cannot read properties of undefined (reading 'title')\n    at analyzeIssue (file:///home/dev/app/dist/index.js:42:17)\n```\n\n### Expected behavior\nA helpful error message pointing at the empty config.\n\n### Actual behavior\nThe process exits with the stack trace above instead.\n\n### Environment\n- triagekit 0.1.0\n- Node v20.11.0\n- macOS 14.4",
+  "labels": [],
+  "user": { "login": "octocat" }
+}

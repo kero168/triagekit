@@ -1,0 +1,7 @@
+[
+  { "number": 12, "title": "CLI crashes with TypeError when config is empty", "state": "open", "html_url": "https://github.com/kero168/triagekit/issues/12" },
+  { "number": 30, "title": "Add JSON output format", "state": "open", "html_url": "https://github.com/kero168/triagekit/issues/30" },
+  { "number": 41, "title": "Docs: quickstart example is outdated", "state": "open", "html_url": "https://github.com/kero168/triagekit/issues/41" },
+  { "number": 55, "title": "Support GitLab as a provider", "state": "open", "html_url": "https://github.com/kero168/triagekit/issues/55" },
+  { "number": 62, "title": "Windows: path separator breaks --existing option", "state": "open", "html_url": "https://github.com/kero168/triagekit/issues/62" }
+]
