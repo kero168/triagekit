@@ -1,0 +1,55 @@
+name: Bug report
+description: Something is broken. (Yes, triagekit will triage this issue — we dogfood.)
+title: '[bug] '
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report! The four fields below are exactly what
+        triagekit's reproduction checklist looks for — fill them in and the
+        bot will thank you instead of nagging you.
+
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: triagekit version and Node.js version.
+      placeholder: 'triagekit 0.1.0, Node v20.11.0'
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: Operating system / environment
+      placeholder: 'Ubuntu 24.04 / macOS 14 / Windows 11 / GitHub Actions ubuntu-latest'
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Exact commands or numbered steps. Attach the issue JSON if relevant.
+      placeholder: |
+        1. npx triagekit analyze issue.json --existing issues.json
+        2. ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-actual
+    attributes:
+      label: Expected vs actual behavior
+      placeholder: |
+        Expected: ...
+        Actual: ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: Anything else?
+      description: Logs, screenshots, context.

@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Questions & ideas (Discussions)
+    url: https://github.com/kero168/triagekit/discussions
+    about: Usage questions and open-ended ideas are best asked here.
+  - name: Security vulnerabilities
+    url: https://github.com/kero168/triagekit/security/advisories/new
+    about: Please report security issues privately — see SECURITY.md.
