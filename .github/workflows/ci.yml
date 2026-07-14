@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Node ${{ matrix.node }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [20, 22]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Type-check
+        run: npm run lint
+
+      - name: Build
+        run: npm run build
+
+      - name: Test
+        run: npm test
+
+      - name: Smoke-test the CLI against fixtures
+        run: |
+          node dist/cli.js --version
+          node dist/cli.js analyze examples/fixtures/bug-report-complete.json \
+            --existing examples/fixtures/existing-issues.json
+          node dist/cli.js analyze examples/fixtures/bug-report-missing-repro.json \
+            --existing examples/fixtures/existing-issues.json --format json > /dev/null
+          node dist/cli.js analyze --event examples/fixtures/issues-opened-event.json \
+            --existing examples/fixtures/existing-issues.json --comment --dry-run
